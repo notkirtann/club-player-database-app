@@ -3,8 +3,9 @@ import Club from "../models/club.js";
 const createClub = async (req, res) => {
   try {
     const club = new Club(req.body);
+    const token = await club.genAuthToken()
     await club.save();
-    res.status(201).send(club);
+    res.status(201).send({club,token});
   } catch (error) {
     res.status(400).send({ error: error.message });
   }

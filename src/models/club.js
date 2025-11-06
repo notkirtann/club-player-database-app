@@ -59,8 +59,8 @@ clubSchema.statics.findByCredentials = async (email,password) => {
 
 clubSchema.methods.genAuthToken = async function(){
     const club = this
-    const jwtToken = jwt.sign({email:club.email},'notkirtann') 
-    club.tokens = club.tokens.concat({token})
+    const jwtToken = jwt.sign({email:club.email},'notkirtann',{expiresIn:'2 minutes'}) 
+    club.tokens = club.tokens.concat({token:jwtToken})
     await club.save()
     return jwtToken
 }
