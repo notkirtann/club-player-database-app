@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
 
-const url = 'mongodb://localhost:27017/club-player-app';
+const url = process.env.MONGODB_URL || 'mongodb://localhost:27017/club-player-app';
 
 mongoose.connect(url)
   .then(() => console.log("MongoDB connected successfully"))
-  .catch((e) => console.error("MongoDB connection failed:", e));
+  .catch((e) => {
+    console.error("MongoDB connection failed:", e);
+    process.exit(1);
+  });
