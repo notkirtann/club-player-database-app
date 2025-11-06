@@ -74,7 +74,7 @@ const deleteClubById = async (req, res) => {
 const clubLogin = async(req,res)=>{
   try{
     const club = await Club.findByCredentials(req.body.email,req.body.password)
-    const token = await club.genAuthToke()
+    const token = await club.genAuthToken()
     res.send({club,token})
   }catch(e){
     res.status(400).send('Invalid Login')

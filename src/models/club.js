@@ -34,7 +34,13 @@ const clubSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
-    }
+    },
+    tokens : [{
+        token : {
+            type : String,
+            require : true
+        }
+    }]
 })
 
 clubSchema.statics.findByCredentials = async (email,password) => {
@@ -54,6 +60,8 @@ clubSchema.statics.findByCredentials = async (email,password) => {
 clubSchema.methods.genAuthToken = async function(){
     const club = this
     const jwtToken = jwt.sign({email:club.email},'notkirtann') 
+    club.tokens = club.tokens.concat({token})
+    await club.save()
     return jwtToken
 }
 
