@@ -4,7 +4,7 @@ import auth from '../middleware/auth.js';
 
 const router = express.Router()
 
-router.post("/", controllers.createClub);
+router.post("/signup", controllers.createClub);
 
 router.post("/login",controllers.clubLogin)
 
