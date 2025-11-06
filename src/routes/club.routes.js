@@ -1,5 +1,6 @@
 import express from 'express'
 import * as controllers from '../controllers/club.controller.js';
+import auth from '../middleware/auth.js';
 
 const router = express.Router()
 
@@ -7,12 +8,12 @@ router.post("/", controllers.createClub);
 
 router.post("/login",controllers.clubLogin)
 
-router.get("/", controllers.getAllClubs);
+router.get("/", auth,controllers.getAllClubs);
 
-router.get("/:id", controllers.getClubById);
+router.get("/:id",auth, controllers.getClubById);
 
-router.patch("/:id", controllers.updateClubById);
+router.patch("/:id",auth, controllers.updateClubById);
 
-router.delete("/:id", controllers.deleteClubById);
+router.delete("/:id",auth, controllers.deleteClubById);
 
 export default router;
