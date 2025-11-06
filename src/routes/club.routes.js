@@ -8,7 +8,7 @@ router.post("/", controllers.createClub);
 
 router.post("/login",controllers.clubLogin)
 
-router.get("/", auth,controllers.getAllClubs);
+router.get("/admin", auth,controllers.getMyClubs);
 
 router.get("/:id",auth, controllers.getClubById);
 

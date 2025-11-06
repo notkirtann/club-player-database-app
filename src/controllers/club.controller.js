@@ -11,13 +11,8 @@ const createClub = async (req, res) => {
   }
 }
 
-const getAllClubs = async (req, res) => {
-  try {
-    const clubs = await Club.find({});
-    res.send(clubs);
-  } catch (error) {
-    res.status(500).send({ error: "Error fetching clubs" });
-  }
+const getMyClubs = async (req, res) => {
+ res.send(req.club)
 }
 
 const getClubById = async (req, res) => {
@@ -72,6 +67,7 @@ const deleteClubById = async (req, res) => {
     res.status(500).send({ error: "Internal server error" });
   }
 }
+
 const clubLogin = async(req,res)=>{
   try{
     const club = await Club.findByCredentials(req.body.email,req.body.password)
@@ -82,4 +78,4 @@ const clubLogin = async(req,res)=>{
   }
 }
 
-export { createClub, getAllClubs, getClubById, updateClubById, deleteClubById,clubLogin };
+export { createClub, getMyClubs, getClubById, updateClubById, deleteClubById,clubLogin };
